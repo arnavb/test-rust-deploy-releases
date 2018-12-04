@@ -3,18 +3,48 @@ language: rust
 cache: cargo
 
 rust:
-  # Minimally supported version used for deploys
-  - 1.30.0
-  
-  # Other testing channels
   - stable
   - beta
   - nightly
   
 matrix:
+  include:
+    - rust: 1.30.0
+      env: TARGET=x86_64-unknown-linux-gnu
+      os: linux
+    - rust: 1.30.0
+      env: TARGET=i686-unknown-linux-gnu
+      os: linux
+    - rust: 1.30.0
+      env: TARGET=x86_64-apple-darwin
+      os: osx
+
   allow_failures:
     - rust: nightly
     - rust: beta
   fast_finish: true
 
-script: cargo check
+script:
+  -|
+    if [ -z "$TARGET" ]; then 
+      cargo build --release
+    else
+      rustup target install $TARGET
+      cargo build --target=$TARGET
+    fi
+  
+
+jobs:
+  include:
+    - stage: deploy
+      rust: 1.30.0
+      script: skip
+      on:
+        - tags: true
+        - condition: -z "$TARGET"
+    #   deploy:
+    #     provider: releases
+    #     api_key:
+    #       secure: ""
+    #     file_glob: true
+    #     file: $CRATE_NAME-
