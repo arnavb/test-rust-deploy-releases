@@ -12,16 +12,25 @@ jobs:
   include:
     - stage: test
       rust: 1.30.0
+      env: TARGET=x86_64-unknown-linux-gnu
       script:
-        - rustup target install x86_64-unknown-linux-gnu i686_unknown-linux-gnu
-        - cargo build --release
+        - rustup target install $TARGET
+        - cargo build --target=$TARGET --release
+    
+    - stage: test
+      rust: 1.30.0
+      env: TARGET=i686-unknown-linux-gnu
+      script: 
+        - rustup target install $TARGET
+        - cargo build --target=$TARGET --release
         
     - stage: test
       rust: 1.30.0
       os: osx
+      env: TARGET=x86_64-apple-darwin
       script:
-        - rustup target install x86_64-apple-darwin
-        - cargo build --release
+        - rustup target install $TARGET
+        - cargo build --target=$TARGET
   
     # - stage: test
     #   rust: stable
