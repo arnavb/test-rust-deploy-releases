@@ -23,13 +23,13 @@ jobs:
         - rustup target install x86_64-apple-darwin
         - cargo build --release
   
-    - stage: test
-      rust: stable
-      script: cargo build --release
+    # - stage: test
+    #   rust: stable
+    #   script: cargo build --release
   
-    - stage: test
-      rust: beta
-      script: cargo build --release
+    # - stage: test
+    #   rust: beta
+    #   script: cargo build --release
       
     - stage: test
       rust: nightly
