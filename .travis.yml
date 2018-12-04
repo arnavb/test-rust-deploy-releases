@@ -1,47 +1,45 @@
 language: rust
 
 cache: cargo
-
-rust:
-  - stable
-  - beta
-  - nightly
   
 matrix:
-  include:
-    - rust: 1.30.0
-      env: TARGET=x86_64-unknown-linux-gnu
-      os: linux
-    - rust: 1.30.0
-      env: TARGET=i686-unknown-linux-gnu
-      os: linux
-    - rust: 1.30.0
-      env: TARGET=x86_64-apple-darwin
-      os: osx
-
   allow_failures:
     - rust: nightly
     - rust: beta
   fast_finish: true
 
-script:
-  - |
-    if [ -z "$TARGET" ]; then 
-      cargo build --release
-    else
-      rustup target install $TARGET
-      cargo build --target=$TARGET
-    fi
-  
-
 jobs:
   include:
-    - stage: deploy
+    - stage: test
       rust: 1.30.0
+      script:
+        - rustup target install x86_64-unknown-linux-gnu i686_unknown-linux-gnu
+        - cargo build --release
+        
+    - stage: test
+      rust: 1.30.0
+      os: osx
+      script:
+        - rustup target install x86_64-apple-darwin
+        - cargo build --release
+  
+    - stage: test
+      rust: stable
+      script: cargo build --release
+  
+    - stage: test
+      rust: beta
+      script: cargo build --release
+      
+    - stage: test
+      rust: nightly
+      script: cargo build --release
+      
+    - stage: deploy
       script: skip
       on:
         - tags: true
-        - condition: -z "$TARGET"
+        # - condition: 
     #   deploy:
     #     provider: releases
     #     api_key:
