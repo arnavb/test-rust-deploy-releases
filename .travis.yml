@@ -28,11 +28,11 @@ matrix:
       rust: nightly
       script: cargo check
 
-script:
-  - rustup target install $TARGET
-  - cargo build --release --target=$TARGET
-
   allow_failures:
     - rust: nightly
     - rust: beta
   fast_finish: true
+
+script:
+  - rustup target install $TARGET
+  - cargo build --release --target=$TARGET
