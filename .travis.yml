@@ -10,6 +10,9 @@ matrix:
     
     - os: linux
       rust: 1.30.0
+      before_script:
+        - sudo apt-get update
+        - sudo apt-get install libc6-dev:i386
       env: TARGET=i686-unknown-linux-gnu
     
     - os: osx
