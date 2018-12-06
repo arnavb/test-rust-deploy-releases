@@ -12,7 +12,7 @@ matrix:
       rust: 1.30.0
       before_script:
         - sudo apt-get update
-        - sudo apt-get install -y libc6-dev:i386
+        - sudo apt-get install -y libc6-dev:i386 build-essential
       env: TARGET=i686-unknown-linux-gnu
     
     - os: osx
