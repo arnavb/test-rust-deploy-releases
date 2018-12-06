@@ -13,6 +13,8 @@ matrix:
       before_script:
         - sudo apt-get update
         - sudo apt-get install -y gcc-4.8 cpp-4.8 gcc-multilib
+      after_scripT:
+        - file target/i686-unknown-linux-gnu/test-rust-deploy-releases
       env: TARGET=i686-unknown-linux-gnu
     
     - os: osx
