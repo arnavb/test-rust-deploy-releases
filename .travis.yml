@@ -56,7 +56,7 @@ script:
 before_deploy:
   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then tar czf $CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz -C target/$TARGET/release $CRATE_NAME; fi
   - if [[ $TRAVIS_OS_NAME == "osx" ]]; then zip -rjX $CRATE_NAME-$TRAVIS_TAG-$TARGET.zip target/$TARGET/release/$CRATE_NAME; fi
-  - if [[ $TRAVIS_OS_NAME == "windows" ]]; then 7z a -tzip $CRATE_NAME-$TRAVIS_TAG-$TARGET.zip target/$TARGET/release/$CRATE_NAME.exe; fi
+  - if [[ $TRAVIS_OS_NAME == "windows" ]]; then 7z a -tzip $CRATE_NAME-$TRAVIS_TAG-$TARGET.zip $CRATE_NAME.exe -w target/$TARGET/release/; fi
     
 deploy:
   provider: releases
