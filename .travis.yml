@@ -33,15 +33,15 @@ matrix:
       
     - os: linux
       rust: 1.30.0
-      script: cargo test
+      script: cargo test --release
     
     - os: linux
       rust: beta
-      script: cargo test
+      script: cargo test --release
     
     - os: linux
       rust: nightly
-      script: cargo test
+      script: cargo test --release
 
   allow_failures:
     - rust: nightly
@@ -49,8 +49,8 @@ matrix:
   fast_finish: true
 
 script:
-  - cargo test
   - rustup target install $TARGET
+  - cargo test --release --target=$TARGET
   - cargo build --release --target=$TARGET
   
 before_deploy:
