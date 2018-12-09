@@ -4,7 +4,7 @@ cache: cargo
 
 env:
   global:
-    - CRATE_NAME=rust-test-deploy-releases
+    - CRATE_NAME=test-rust-deploy-releases
 
 matrix:
   include:
