@@ -67,7 +67,7 @@ deploy:
   file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
   on:
     tags: true
-    condition: -z $TARGET
+    condition: ! -z $TARGET
 
 branches:
   only:
