@@ -61,8 +61,8 @@ deploy:
     - tags: true
     - condition: -z $TARGET
 
-branches:
-  only:
-    - master
-    # Tags
-    - /^v\d+\.\d+\.\d+.*$/
+# branches:
+#   only:
+#     - master
+#     # Tags
+#     - /^v\d+\.\d+\.\d+.*$/
