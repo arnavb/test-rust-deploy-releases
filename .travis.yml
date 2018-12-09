@@ -65,4 +65,4 @@ branches:
   only:
     - master
     # Tags
-    - /^v\d+\.\d+\.\d+.*$/
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
