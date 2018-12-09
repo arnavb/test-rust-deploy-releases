@@ -25,25 +25,23 @@ matrix:
     
     - os: windows
       rust: stable
-      # env: TARGET=x86_64-pc-windows-msvc
-      script: cargo check
+      env: TARGET=x86_64-pc-windows-msvc
     
     - os: windows
       rust: stable
-      # env: TARGET=i686-pc-windows-msvc
-      script: cargo check
+      env: TARGET=i686-pc-windows-msvc
       
     - os: linux
       rust: 1.30.0
-      script: cargo check
+      script: cargo test
     
     - os: linux
       rust: beta
-      script: cargo check
+      script: cargo test
     
     - os: linux
       rust: nightly
-      script: cargo check
+      script: cargo test
 
   allow_failures:
     - rust: nightly
@@ -51,12 +49,14 @@ matrix:
   fast_finish: true
 
 script:
+  - cargo test
   - rustup target install $TARGET
   - cargo build --release --target=$TARGET
   
 before_deploy:
   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then tar czf $CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz -C target/$TARGET/releases $CRATE_NAME; fi
   - if [[ $TRAVIS_OS_NAME == "osx" ]]; then zip -rjX $CRATE_NAME-$TRAVIS_TAG-$TARGET.zip target/$TARGET/releases/$CRATE_NAME; fi
+  - if [[ $TRAVIS_OS_NAME == "windows" ]]; then 7z a -tzip $CRATE_NAME-$TRAVIS_TAG-$TARGET.zip target/$TARGET/releases/$CRATE_NAME.exe; fi
     
 deploy:
   provider: releases
