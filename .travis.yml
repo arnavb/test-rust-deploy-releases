@@ -53,7 +53,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: secure: "p/xInB0O1CLLbCHKVbeyGjA6fkDGTI/hScU2cISjT7Km24WLJa6S29q3kGRZjvB8F0aovv1v2OYk5oCEYvhgHKxndZfWxOFUYbRwlovUQyOhVY7rSER59h3n/G/TAk60D3AYCp21GJYjjbJpffE1rs71ISNpo5qkozyGNy5y6ArpDPlJMdRboZWFbTDnvX100y4hM/94O6l5L48GZHW0fBeGmDn01XyZR4WdCzwog1CIeHCgW7qqhe6dYRKHZQCFCFmArmQen3O4/HVGj3RwhGqk4MrILPcgwc9e0hq4fz8bEmfGsIjbtOZQ8QWO85fAqFy6kNYPTSh8fJ3lD+0vOCBC6UntMaa8uHrx9a3wZ6CM+nv1fCJTKm1xSxcwTk4qZU619p2k74mpaKWBQKpMWD0iX69zYwhpI7FHDSTulsbHHkVHBN+m0qnCMIUxRRF/ZPXFNsLmZ/SmgAg6isjI016ViMlg22MjujG2U6Aw1EyoQilltMfZfycS/6QzbstdwNQYpgw7VfxOMyTm1FXcQsKcb8NeW44wwEGxnzLItiEvONFKJrzvnEvUez4D4fvySmxCc2VQNB+lk9uJh6eIhay5RkTVsqNfI8KIjtpRrt6S5kesfWoOcFlnsnncs2w/NXsKIHkCVgddhHBzORY5NkVxy52b/ih7xyPBUouuQ2A="
+    secure: "p/xInB0O1CLLbCHKVbeyGjA6fkDGTI/hScU2cISjT7Km24WLJa6S29q3kGRZjvB8F0aovv1v2OYk5oCEYvhgHKxndZfWxOFUYbRwlovUQyOhVY7rSER59h3n/G/TAk60D3AYCp21GJYjjbJpffE1rs71ISNpo5qkozyGNy5y6ArpDPlJMdRboZWFbTDnvX100y4hM/94O6l5L48GZHW0fBeGmDn01XyZR4WdCzwog1CIeHCgW7qqhe6dYRKHZQCFCFmArmQen3O4/HVGj3RwhGqk4MrILPcgwc9e0hq4fz8bEmfGsIjbtOZQ8QWO85fAqFy6kNYPTSh8fJ3lD+0vOCBC6UntMaa8uHrx9a3wZ6CM+nv1fCJTKm1xSxcwTk4qZU619p2k74mpaKWBQKpMWD0iX69zYwhpI7FHDSTulsbHHkVHBN+m0qnCMIUxRRF/ZPXFNsLmZ/SmgAg6isjI016ViMlg22MjujG2U6Aw1EyoQilltMfZfycS/6QzbstdwNQYpgw7VfxOMyTm1FXcQsKcb8NeW44wwEGxnzLItiEvONFKJrzvnEvUez4D4fvySmxCc2VQNB+lk9uJh6eIhay5RkTVsqNfI8KIjtpRrt6S5kesfWoOcFlnsnncs2w/NXsKIHkCVgddhHBzORY5NkVxy52b/ih7xyPBUouuQ2A="
   skip_cleanup: true
   file_glob: true
   file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
@@ -61,8 +61,8 @@ deploy:
     - tags: true
     - condition: -z $TARGET
 
-# branches:
-#   only:
-#     - master
-#     # Tags
-#     - /^v\d+\.\d+\.\d+.*$/
+branches:
+  only:
+    - master
+    # Tags
+    - /^v\d+\.\d+\.\d+.*$/
