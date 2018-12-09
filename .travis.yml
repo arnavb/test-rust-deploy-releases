@@ -58,8 +58,8 @@ deploy:
   file_glob: true
   file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
   on:
-    - tags: true
-    - condition: -z $TARGET
+    tags: true
+    condition: -z $TARGET
 
 branches:
   only:
