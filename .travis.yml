@@ -55,7 +55,7 @@ script:
   
 before_deploy:
   - mkdir $CRATE_NAME-$TRAVIS_TAG-$TARGET
-  - cp target/$TARGET/release/$CRATE_NAME* $CRATE_NAME-$TRAVIS_TAG-$TARGET
+  - cp target/$TARGET/release/$CRATE_NAME(.exe)? $CRATE_NAME-$TRAVIS_TAG-$TARGET
   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then tar czf $CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz $CRATE_NAME-$TRAVIS_TAG-$TARGET; fi
   - if [[ $TRAVIS_OS_NAME == "osx" ]]; then zip -r $CRATE_NAME-$TRAVIS_TAG-$TARGET.zip $CRATE_NAME-$TRAVIS_TAG-$TARGET; fi
   - if [[ $TRAVIS_OS_NAME == "windows" ]]; then 7z a -tzip $CRATE_NAME-$TRAVIS_TAG-$TARGET.zip $CRATE_NAME-$TRAVIS_TAG-$TARGET; fi
