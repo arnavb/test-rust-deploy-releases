@@ -1,6 +1,6 @@
 [package]
 name = "test-rust-deploy-releases"
-version = "0.1.8"
+version = "0.1.9"
 authors = ["Arnav Borborah <arnavborborah11@gmail.com>"]
 
 [dependencies]
