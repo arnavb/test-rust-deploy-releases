@@ -55,7 +55,7 @@ script:
   
 before_deploy:
   - mkdir $CRATE_NAME-$TRAVIS_TAG-$TARGET
-  - cp {README.md, LICENSE} $CRATE_NAME-$TRAVIS_TAG-$TARGET
+  - cp ./{README.md,LICENSE} $CRATE_NAME-$TRAVIS_TAG-$TARGET
   - |
     if [[ $TRAVIS_OS_NAME == "windows" ]]; then
       cp target/$TARGET/release/$CRATE_NAME.exe $CRATE_NAME-$TRAVIS_TAG-$TARGET
